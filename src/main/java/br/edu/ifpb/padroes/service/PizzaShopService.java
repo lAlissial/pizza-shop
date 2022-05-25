@@ -40,14 +40,6 @@ public class PizzaShopService {
     // TODO - implementar adapter para unificar pizzas vindas das APIs Damenos e PizzaHot num único método getPizzas()
     // TODO - public List<Pizza> getPizzas() {}
 
-    /*public List<DamenosPizza> getPizzasDamenos() {
-        return damenosService.getPizzas();
-    }
-
-    public List<PizzaHotPizza> getPizzasPizzaHot() {
-        return pizzaHotService.getPizzas();
-    }*/
-
     public List<Pizza> getPizzas(){
         List<Pizza> pizzas = new ArrayList<>();
         pizzas.addAll(damenosService.getPizzas().stream().map(DamenosAdapter::new).collect(Collectors.toList()));

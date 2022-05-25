@@ -16,27 +16,18 @@ public class Main {
         System.out.println("Pizzas - menu");
 
         // TODO - implementar adapter para juntar as pizzas da PizzaHot e Damenos em um único conjunto
-        /*for (PizzaHotPizza pizza : pizzaShopService.getPizzasPizzaHot()) {
-            System.out.println(String.format("%s - %.2f", pizza.getTopping(), pizza.getPrice()));
-        }
-        for (DamenosPizza pizza : pizzaShopService.getPizzasDamenos()) {
-            System.out.println(String.format("%s - %.2f", pizza.getName(), pizza.getCost()));
-        }*/
         for (Pizza pizza : pizzaShopService.getPizzas()) {
             System.out.println(String.format("%s - %.2f", pizza.getName(), pizza.getPrice()));
         }
-
 
         Pizza pizza = new PizzaShopPizza("pepperoni", 55.0f);
 
         // TODO - implementar padrão decorator para só precisar passar o objeto pizza
 
-        BaseDecorator pizzaCupomDesconto = new DiscountCouponDecorator(pizza);
-        BaseDecorator pizzaQueijoExtra = new ExtraCheeseDecorator(pizzaCupomDesconto);
-        BaseDecorator pizzaBordaRecheada = new StuffedCrustDecorator(pizzaQueijoExtra);
+        BaseDecorator pizzaPedido = new StuffedCrustDecorator(new ExtraCheeseDecorator(new DiscountCouponDecorator(pizza)));
 
-        pizzaShopService.orderPizza(pizzaBordaRecheada);
-        
+        pizzaShopService.orderPizza(pizzaPedido);
+
     }
 
 }
